@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "43492415987",
+    "project_id": "notifications-channels",
+    "storage_bucket": "notifications-channels.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43492415987:android:af158301ef37720cd81a86",
+        "android_client_info": {
+          "package_name": "com.example.firebase_notifications"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzlCtcqOMh0w6sgV7Xn4dFCLSMOWaywaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43492415987:android:92d8daca83869328d81a86",
+        "android_client_info": {
+          "package_name": "com.example.task1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzlCtcqOMh0w6sgV7Xn4dFCLSMOWaywaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
