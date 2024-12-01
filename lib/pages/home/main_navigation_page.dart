@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:task1/pages/chat_page.dart'; // Import your existing ChatPage
-import 'package:task1/pages/channel_subscription_page.dart'; // Import your existing ChannelSubscriptionPage
+import 'package:task1/pages/channels/channel_subscription_page.dart';
+import 'package:task1/pages/chat/chat_rooms_page.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -13,13 +12,8 @@ class MainNavigationPage extends StatefulWidget {
 class _MainNavigationPageState extends State<MainNavigationPage> {
   int _selectedIndex = 0;
 
-  // List of screens to navigate between
   final List<Widget> _screens = [
-    // Assuming you want a default chat with a specific channel or user
-    const ChatPage(
-        channelId: 'default_channel',
-        otherUserName: 'Group Chat'
-    ),
+    const ChatRoomsPage(),
     const ChannelSubscriptionPage(),
   ];
 

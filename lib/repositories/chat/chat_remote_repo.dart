@@ -1,12 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task1/entities/message.dart';
-import 'package:task1/repositories/repo_interface.dart';
+import 'package:task1/repositories/chat/chat_repo_interface.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class ChatRepo implements IRepo {
+class ChatRemoteRepo implements IChatRepo {
   late final DatabaseReference ref;
 
-  ChatRepo() {
+  ChatRemoteRepo() {
     ref = FirebaseDatabase.instance.ref();
   }
 

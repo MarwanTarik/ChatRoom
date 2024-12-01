@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task1/entities/message.dart';
-import 'package:task1/repositories/chat_repo.dart';
+import 'package:task1/repositories/chat/chat_repo_interface.dart';
+
+import '../../repositories/chat/chat_remote_repo.dart';
 
 class ChatPage extends StatefulWidget {
   final String channelId;
@@ -19,7 +21,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _messageController = TextEditingController();
-  final ChatRepo _chatRepo = ChatRepo();
+  final IChatRepo _chatRepo = ChatRemoteRepo();
   List<Message> _messages = [];
   bool _isLoading = false;
 
