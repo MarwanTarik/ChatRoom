@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task1/entities/message.dart';
 import 'package:task1/repositories/chat/chat_repo_interface.dart';
-
-import '../../repositories/chat/chat_remote_repo.dart';
+import 'package:task1/repositories/chat/chat_remote_repo.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ChatPage extends StatefulWidget {
   final String channelId;
@@ -29,6 +31,7 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     super.initState();
     _fetchMessages();
+    _subscribeToChannel(widget.channelId);
   }
 
   Future<void> _fetchMessages() async {
@@ -74,8 +77,11 @@ class _ChatPageState extends State<ChatPage> {
         widget.channelId,
       );
 
-      print(message.timestamp);
+      // Send message to Firestore
       await _chatRepo.send(message);
+
+      // Send push notification to all subscribed users via your server
+      await sendMessageToServer('New Message', messageText, widget.channelId);
 
       // Clear input and refresh messages
       _messageController.clear();
@@ -87,6 +93,40 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
+  Future<void> _subscribeToChannel(String channelId) async {
+    await FirebaseMessaging.instance.subscribeToTopic(channelId);
+  }
+
+  // Function to send message to server
+  Future<void> sendMessageToServer(String title, String body, String topic) async {
+    final url = Uri.parse('http://10.0.2.2:3000/send-notification');
+    final headers = {"Content-Type": "application/json"};
+
+    // Prepare the message data
+    final messageData = {
+      "title": title,
+      "body": body,
+      "topic": topic,
+    };
+
+    // Send the request
+    try {
+      final response = await http.post(
+        url,
+        headers: headers,
+        body: json.encode(messageData),
+      );
+
+      if (response.statusCode == 200) {
+        print('Message sent successfully');
+      } else {
+        print('Failed to send message');
+      }
+    } catch (e) {
+      print('Error sending message: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,8 +135,7 @@ class _ChatPageState extends State<ChatPage> {
           children: [
             CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://ui-avatars.com/api/?name=${widget.otherUserName}'
-              ),
+                  'https://ui-avatars.com/api/?name=${widget.otherUserName}'),
             ),
             const SizedBox(width: 10),
             Column(

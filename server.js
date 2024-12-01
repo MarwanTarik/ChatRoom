@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
 const path = require('path');
-const serviceAccount = require(path.resolve(__dirname, '../../../../notifications-channels-firebase-adminsdk-z3g11-972809f12c.json'));
+const serviceAccount = require(path.resolve(__dirname, 'notifications-channels-firebase-adminsdk-z3g11-972809f12c.json'));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

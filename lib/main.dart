@@ -9,10 +9,8 @@ import 'package:task1/repositories/channels/channels_remote_repo.dart';
 import 'repositories/channels/channels_repo_interface.dart';
 
 void main() async {
-  // Ensure Flutter bindings are initialized
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
   await Firebase.initializeApp();
 
   runApp(MyApp());
@@ -52,7 +50,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const AuthWrapper(), // Add an authentication wrapper
+        home: const AuthWrapper(),
       ),
     );
   }
