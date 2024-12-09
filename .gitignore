@@ -48,3 +48,9 @@ app.*.map.json
 
 /debug_keystore_output.txt
 /build
+
+/node_modules
+
+/.idea
+
+/.dart_tool
