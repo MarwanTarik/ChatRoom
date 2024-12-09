@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/release
 
 /notifications-channels-firebase-adminsdk-z3g11-972809f12c.json
+
+/%USERPROFILE%
+
+/debug_keystore_output.txt
+/build

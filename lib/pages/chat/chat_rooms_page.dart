@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task1/pages/auth/logout_widget.dart';
 
 import '../../providers/user_provider.dart';
+import '../auth/login_page.dart';
 import 'chat_page.dart';
 
 class ChatRoomsPage extends StatelessWidget {
@@ -13,6 +15,17 @@ class ChatRoomsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chat Rooms'),
+        actions: [
+          LogoutButton(
+            onLogoutSuccess: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (_) => LoginPage())
+              );
+            },
+            color: Colors.green,
+            textColor: Colors.black,
+          ),
+        ],
       ),
       body: Consumer<UserProvider>(
         builder: (context, userProvider, child) {
